@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parental Advisory</title>
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbit&family=Song+Myung&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbit', sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+            word-break: keep-all;
+        }
+
+        .header-section {
+            position: relative;
+            height: 400px;
+            background: linear-gradient(45deg, #1a1a1a, #333);
+        }
+
+        .meme-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            height: 100%;
+            gap: 0;
+        }
+
+        .meme-item {
+            position: relative;
+            overflow: hidden;
+            background: #222;
+        }
+
+        .meme-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            background-repeat: no-repeat;
+        }
+
+        .meme-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 2;
+        }
+
+        .meme-text {
+            font-size: 24px;
+            font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin: 5px 0;
+        }
+
+        .red-banner {
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            height: 60px;
+            display: flex;
+            align-items: center;
+            padding: 0;
+            box-shadow: 0 4px 8px rgba(255,0,0,0.3);
+            overflow: hidden;
+            position: relative;
+        }   
+
+        .scroll-container {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll 50s linear infinite;
+        }
+
+        .scroll-text {
+            display: flex;
+            justify-content: space-between;
+            min-width: 100%;
+            padding: 0 20px;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .banner-text {
+            font-size: 24px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .korean-text {
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .content-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .content-column h2 {
+            font-size: 30px;
+            font-weight: 400;
+            margin-bottom: 30px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .content-column p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .tweet-mockup {
+            background: #15202b;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #38444d;
+        }
+
+        .tweet-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .tweet-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #1da1f2;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+
+        .tweet-info {
+            flex-grow: 1;
+        }
+
+        .tweet-username {
+            font-weight: bold;
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .tweet-handle {
+            color: #8899a6;
+            font-size: 12px;
+        }
+
+        .tweet-content {
+            color: #fff;
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 15px;
+        }
+
+        .tweet-stats {
+            display: flex;
+            gap: 20px;
+            color: #8899a6;
+            font-size: 12px;
+        }
+
+        .mansion-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .highlight {
+            color: #ff0000;
+            font-weight: 400;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #ff0000; }
+            50% { text-shadow: 0 0 20px #ff0000, 0 0 30px #ff0000; }
+            100% { text-shadow: 0 0 5px #ff0000; }
+        }
+
+        .banner-text {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .circle-button {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            border: none;
+            cursor: url(cursor.cur) auto;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 2px 10px rgba(255, 0, 0, 0.3);
+        }
+
+        .circle-button a {
+            text-align: center; text-decoration: none; color: white;
+        }
+
+        .circle-button a:hover {
+            text-align: center; text-decoration: none; color: #ff0000;
+        }
+
+        .circle-button:hover {
+            background: #ffffff;
+            color: #ff0000;
+            transform: translateY(-50%) scale(1.2);
+            box-shadow: 10px 10px 10px rgba(255, 0, 0, 0.5);
+        }
+
+        .circle-button.left {
+            left: -80px;
+        }
+
+        .circle-button.right {
+            right: -80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-section">
+        <div class="meme-grid">
+            <div class="meme-item">
+                <div style="background: url(meme9.jpg); height: 100%; display: flex; align-items: center; justify-content: center;background-size: cover;">
+                    <div class="meme-overlay">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="meme-item">
+                <div style="background: url(meme8.png); height: 100%; position: relative; background-size: cover;">
+                    <div class="meme-overlay">
+
+                    </div>
+                </div>
+            </div>
+            <div class="meme-item">
+                <div style="background: url(gif5.gif); height: 100%; position: relative; background-size: cover;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="red-banner">
+        <div class="scroll-container">
+            <div class="scroll-text">
+                <div class="banner-text"> The Sorrows of Young Werther &nbsp;&nbsp; 젊은 베르테르의 슬픔 &nbsp;&nbsp; The Sorrows of Young Werther &nbsp;&nbsp; 젊은 베르테르의 슬픔 &nbsp;&nbsp; The Sorrows of Young Werther &nbsp;&nbsp; 젊은 베르테르의 슬픔 &nbsp;&nbsp; The Sorrows of Young Werther &nbsp;&nbsp; 젊은 베르테르의 슬픔 &nbsp;&nbsp; The Sorrows of Young Werther &nbsp;&nbsp; 젊은 베르테르의 슬픔 &nbsp;&nbsp; The Sorrows of Young Werther &nbsp;&nbsp; 젊은 베르테르의 슬픔 </div>
+            </div>  
+        </div>
+    </div>
+
+    <div class="content-section">
+        <div class="content-column">
+            <h2>Definition</h2>
+            <p><span class="highlight">1980년대 중반 미국에서는 음악 속 성적, 폭력적, 비속어 등 노골적 내용에 대한 사회적 우려가 커지기 시작했습니다.</span> 특히, 당시 상원의원 알 고어의 부인 티퍼 고어가 딸에게 선물한 프린스의 앨범에서 노골적인 가사를 듣고 충격을 받은 것을 계기로, 음악에 영화처럼 등급을 붙여 부모가 자녀가 듣는 음악을 선택할 수 있도록 하자는 의견이 수면 위로 오르며 1985년 11월부터 “Parental Advisory: Explicit Lyrics”라는 경고 딱지가 음반에 부착되기 시작했습니다.</p>
+           
+        </div>
+
+        <div class="content-column">
+            <h2>Episode</h2>
+            <p>일부 소매점에서는 이 마크가 붙은 음반을 아예 진열하지 않거나 미성년자에게 판매를 금지하는 등, 음반의 유통과 판매에 제한이 생겼으나, 오히려 이로 인해 금지된 음반이 더욱 매력적으로 보이는 효과가 나타났을 뿐 아니라, Parental Advisory 마크가 부착된 음반은 청소년들에게 더욱 탐나는 아이템이 되어버렸습니다. <span class="highlight">일부 아티스트들은 이 마크를 ‘자유로운 창작의 증거’로 여기며, 오히려 예술적 정체성을 강화하는 도구로 활용하기도 하는 등 음악적 저항의 상징으로 자리 잡기도 했다. </span></p>
+        </div>
+
+        <a href="https://ms-choi2057.github.io/finalterm6/"><button class="circle-button left">◀</button></a>
+    </div>
+</body>
+</html>
