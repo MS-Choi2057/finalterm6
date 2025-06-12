@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Parental Advisory</title>
-     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Orbit&family=Song+Myung&display=swap" rel="stylesheet">
     <style>
+@font-face {
+    font-family: 'PartialSansKR-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/PartialSansKR-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Danjo-bold-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/Danjo-bold-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
         * {
             margin: 0;
             padding: 0;
@@ -16,10 +29,20 @@
 
         body {
             font-family: 'Orbit', sans-serif;
-            background-color: #000;
+            background-image: url(bg2.png), url(bg.gif);
+                background-size: cover, 200px 200px;
+    background-attachment: fixed, fixed;
+    background-position: center, bottom;
+    background-repeat: repeat;
+    z-index: 0;
             color: #fff;
             overflow-x: hidden;
             word-break: keep-all;
+            cursor: url(cursor.cur), auto;
+        }
+
+        body background-image {
+filter: brightness(0.5);
         }
 
         .header-section {
@@ -76,13 +99,63 @@
             position: relative;
         }   
 
-        .scroll-container {
-            display: flex;
-            white-space: nowrap;
-            animation: scroll 50s linear infinite;
+.scroll-container {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.scroll-text {
+    display: inline-block;
+    animation: scroll 30s linear infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.banner-text {
+    animation: glow 2s ease-in-out infinite alternate;
+    padding: 0 20px;
+}
+
+    .scroll-container {
+        width: 100%; /* Full width of the container */
+        overflow: hidden; /* Hide overflowing content */
+        position: relative; /* Establish stacking context */
+    }
+
+    .scroll-content {
+		padding-top: 100px;
+        display: flex; /* Arrange images in a row */
+        gap: 20px; /* Add spacing between images */
+        animation: scroll-horizontal 25s linear infinite; /* Infinite scrolling animation */
+    }
+
+    .scroll-content img {
+		border-radius: 5%;
+		filter: grayscale(100);
+        width: 500px; /* Set a fixed width for the images */
+        height: 300px; /* Set a fixed height for the images */
+        object-fit: cover; /* Ensure the images are properly scaled */
+    }
+
+    @keyframes scroll-horizontal {
+        0% {
+            transform: translateX(0); /* Start at the initial position */
         }
+        100% {
+            transform: translateX(-100%); /* Move left by 100% of the container width */
+        }
+    }
 
         .scroll-text {
+            font-family: 'rixYeoljeongdo_Regular', sans-serif;
             display: flex;
             justify-content: space-between;
             min-width: 100%;
@@ -99,6 +172,7 @@
         }
 
         .banner-text {
+            font-family: 'Danjo-bold-Regular';
             font-size: 24px;
             font-weight: 400;
             letter-spacing: 2px;
@@ -109,18 +183,24 @@
             font-weight: 400;
         }
 
-        .content-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            padding: 60px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-        }
+.content-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 60px;
+    padding: 60px 40px;
+    max-width: 700px;
+    margin: auto;
+    position: relative;}
+
+        .content-column {
+    width: 100%;
+    text-align: center;
+}
 
         .content-column h2 {
-            font-size: 30px;
+            font-size: 0px;
             font-weight: 400;
             margin-bottom: 30px;
             color: #fff;
@@ -128,11 +208,12 @@
         }
 
         .content-column p {
-            font-size: 16px;
+            font-size: 18px;
             line-height: 1.8;
             color: #ccc;
             margin-bottom: 20px;
-            font-weight: 400;
+            font-weight: 700;
+            text-align: center;
         }
 
         .tweet-mockup {
@@ -215,15 +296,15 @@
         }
 
         .circle-button {
-            position: absolute;
+            position: fixed; /* Change from absolute to fixed */
             width: 60px;
             height: 60px;
+            border: 1px solid #ffffff;
             border-radius: 50%;
             background: linear-gradient(135deg, #ff0000, #cc0000);
-            border: none;
-            cursor: url(cursor.cur) auto;
-            top: 50%;
-            transform: translateY(-50%);
+            cursor: pointer;
+            bottom: 20px;  /* Changed from top to bottom */
+            transform: none;  /* Removed translateY */
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
@@ -231,6 +312,7 @@
             color: white;
             font-size: 24px;
             box-shadow: 0 2px 10px rgba(255, 0, 0, 0.3);
+            z-index: 1000;
         }
 
         .circle-button a {
@@ -244,24 +326,109 @@
         .circle-button:hover {
             background: #ffffff;
             color: #ff0000;
-            transform: translateY(-50%) scale(1.2);
+            transform: translateY(-20%) scale(1.1);
             box-shadow: 10px 10px 10px rgba(255, 0, 0, 0.5);
         }
 
         .circle-button.left {
-            left: -80px;
+            left: 20px; /* Change from -80px to 20px */
         }
 
-        .circle-button.right {
-            right: -80px;
+
+
+
+        .main-button {
+            position: fixed;
+            bottom: 20px;  /* Changed from top to bottom */
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: white;
+            border: 1px solid #ffffff;
+            border-radius: 25px;
+            text-decoration: none;
+            font-family: 'Orbit', sans-serif;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(255, 0, 0, 0.3);
+            z-index: 1000;
         }
+
+        .main-button:hover {
+            background: #ffffff;
+            color: #ff0000;
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.5);
+        }
+
+        .bottom-gradient {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(to top, 
+        rgba(0,0,0,0.9) 0%,
+        rgba(0,0,0,0.7) 40%,
+        rgba(0,0,0,0) 100%);
+    z-index: 999;
+    pointer-events: none;
+}
+
+.scroll-container2 {
+    width: 100vw; /* Full viewport width */
+    margin-left: calc(-50vw + 50%); /* Center the container */
+    margin-right: calc(-50vw + 50%);
+    overflow: hidden;
+    position: relative;
+}
+
+.scroll-content2 {
+    padding-top: 100px;
+    display: flex;
+    gap: 20px;
+    animation: scroll-horizontal 25s linear infinite;
+    width: fit-content; /* Adjust width to content */
+}
+
+.scroll-content2 img {
+    border-radius: 5%;
+    filter: grayscale(100);
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+}
+
+@keyframes scroll-horizontal {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-50% - 10px)); /* Adjust for gap */
+    }
+}
+
+.content-section iframe {
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+    </style>
+
     </style>
 </head>
 <body>
+    <a href="https://ms-choi2057.github.io/finalterm/" class="main-button">Streisand Effect</a>
     <div class="header-section">
         <div class="meme-grid">
             <div class="meme-item">
-                <div style="background: url(meme9.jpg); height: 100%; display: flex; align-items: center; justify-content: center;background-size: cover;">
+                <div style="background: url(gif5.gif); height: 100%; display: flex; align-items: center; justify-content: center;background-size: cover;">
                     <div class="meme-overlay">
                         
                     </div>
@@ -275,7 +442,7 @@
                 </div>
             </div>
             <div class="meme-item">
-                <div style="background: url(gif5.gif); height: 100%; position: relative; background-size: cover;">
+                <div style="background: url(meme9.jpg); height: 100%; position: relative; background-size: cover;">
                 </div>
             </div>
         </div>
@@ -284,24 +451,52 @@
     <div class="red-banner">
         <div class="scroll-container">
             <div class="scroll-text">
-                <div class="banner-text"> Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp; Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp;Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp;Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp;Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp;Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp;Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp; </div>
+              <div class="banner-text"> Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp; Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp;Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp;Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp;Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp;Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp;Parental Advisory Explicit Content &nbsp;&nbsp; 청불딱지에서 힙함의 상징으로 &nbsp;&nbsp; </div>
+            </div>  
             </div>  
         </div>
     </div>
 
-    <div class="content-section">
+    <div class="content-section" style="padding-top: 150px;">
+
         <div class="content-column">
-            <h2>Definition</h2>
-            <p><span class="highlight">1980년대 중반 미국에서는 음악 속 성적, 폭력적, 비속어 등 노골적 내용에 대한 사회적 우려가 커지기 시작했습니다.</span> 특히, 당시 상원의원 알 고어의 부인 티퍼 고어가 딸에게 선물한 프린스의 앨범에서 노골적인 가사를 듣고 충격을 받은 것을 계기로, 음악에 영화처럼 등급을 붙여 부모가 자녀가 듣는 음악을 선택할 수 있도록 하자는 의견이 수면 위로 오르며 1985년 11월부터 “Parental Advisory: Explicit Lyrics”라는 경고 딱지가 음반에 부착되기 시작했습니다.</p>
-           
+           <p><span class="highlight">1980년대 중반 미국에서는 음악 속 성적, 폭력적, 비속어 등 노골적 내용에 대한 사회적 우려가 커지기 시작했습니다.</span> 특히, 당시 상원의원 알 고어의 부인 티퍼 고어가 딸에게 선물한 프린스의 앨범에서 노골적인 가사를 듣고 충격을 받은 것을 계기로, 음악에 영화처럼 등급을 붙여 부모가 자녀가 듣는 음악을 선택할 수 있도록 하자는 의견이 수면 위로 오르며 1985년 11월부터 “Parental Advisory: Explicit Lyrics”라는 경고 딱지가 음반에 부착되기 시작했습니다.</p>  
+
         </div>
 
         <div class="content-column">
-            <h2>Episode</h2>
-            <p>일부 소매점에서는 이 마크가 붙은 음반을 아예 진열하지 않거나 미성년자에게 판매를 금지하는 등, 음반의 유통과 판매에 제한이 생겼으나, 오히려 이로 인해 금지된 음반이 더욱 매력적으로 보이는 효과가 나타났을 뿐 아니라, Parental Advisory 마크가 부착된 음반은 청소년들에게 더욱 탐나는 아이템이 되어버렸습니다. <span class="highlight">일부 아티스트들은 이 마크를 ‘자유로운 창작의 증거’로 여기며, 오히려 예술적 정체성을 강화하는 도구로 활용하기도 하는 등 음악적 저항의 상징으로 자리 잡기도 했다. </span></p>
+           <p>일부 소매점에서는 이 마크가 붙은 음반을 아예 진열하지 않거나 미성년자에게 판매를 금지하는 등, 음반의 유통과 판매에 제한이 생겼으나, 오히려 이로 인해 금지된 음반이 더욱 매력적으로 보이는 효과가 나타났을 뿐 아니라, Parental Advisory 마크가 부착된 음반은 청소년들에게 더욱 탐나는 아이템이 되어버렸습니다. <span class="highlight">일부 아티스트들은 이 마크를 ‘자유로운 창작의 증거’로 여기며, 오히려 예술적 정체성을 강화하는 도구로 활용하기도 하는 등 음악적 저항의 상징으로 자리 잡기도 했다. </span></p>  
+        </div>
+        <div class="content-section2">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/Ry9aAQRa3QM?si=GaNgi62rzI0EqMwd" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        	<div class="scroll-container2">
+		<div class="scroll-content2">
+			<img src="scroll1.jpg">
+			<img src="scroll2.jpg">
+			<img src="scroll3.png">
+			<!-- Duplicate images for seamless scrolling -->
+			<img src="scroll1.jpg">
+			<img src="scroll2.jpg">
+			<img src="scroll3.png">
+            <img src="scroll1.jpg">
+			<img src="scroll2.jpg">
+			<img src="scroll3.png">
+		</div>
+	</div>
+       <div class="content-section" style="padding-top: 100px;">
+            <img src="number1.png" width="50%">
+            <p style="padding-top:15px;">일부 버전이 Parental Advisory 판정을 받은 에이브릴 라빈의 3집 [The Best Damn Thing] 판매량</p>
         </div>
 
+        <div class="content-section" style="padding-top: 050px;">
+        <div class="content-column">
+            <p>청소년기는 호기심이 왕성하고, 금지된 것에 대한 매력이 커지는 시기입니다. 금지하거나 숨기려 할수록 오히려 청소년들은 그 콘텐츠에 더 큰 호기심을 갖고, 적극적으로 찾아보려는 동기가 생깁니다. 따라서 청소년 보호를 위해서는 단순한 차단이나 금지보다는, 왜 해당 콘텐츠가 부적절한지, 어떤 가치관과 태도가 필요한지에 대해 충분히 설명하고 소통하는 것이 더 효과적입니다. 정보의 통제보다는 비판적 사고와 자기통제력을 키워주는 접근이 필요합니다.</p>
+
+        </div>
+    
         <a href="https://ms-choi2057.github.io/finalterm5/"><button class="circle-button left">◀</button></a>
     </div>
+    <div class="bottom-gradient"></div>
 </body>
 </html>
